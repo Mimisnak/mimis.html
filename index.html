@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Links</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
+            font-family: 'Segoe UI', sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 40px;
+            position: relative;
+            animation: containerFloat 3s ease-in-out infinite;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+
+        @keyframes containerFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ff0099, #00ff99);
+            border-radius: 32px;
+            z-index: -1;
+            animation: borderGlow 3s linear infinite;
+            filter: blur(5px);
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.02); }
+        }
+
+        .social-icons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            padding: 20px;
+        }
+
+        .social-icons a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+        }
+
+        .social-icons a:hover {
+            transform: translateY(-8px) scale(1.05);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .social-icons img {
+            width: 50px;
+            height: 50px;
+            border-radius: 15px;
+            margin-bottom: 8px;
+            transition: all 0.4s ease;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+
+        .social-icons a:hover img {
+            transform: scale(1.15) rotate(5deg);
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+        }
+
+        .social-icons span {
+            margin-top: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            opacity: 0.9;
+            font-size: 0.9em;
+            letter-spacing: 0.5px;
+        }
+
+        .social-icons a:hover span {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .cursor-trail {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="social-icons">
+            <a href="https://www.youtube.com/@dimitrisnakos123" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
+                <span>YouTube</span>
+            </a>
+            <a href="https://www.linkedin.com/in/dimitrios-nakos-a669022a9/" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/3536/3536505.png" alt="LinkedIn">
+                <span>LinkedIn</span>
+            </a>
+            <a href="https://github.com/Mimisnak" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/3291/3291695.png" alt="GitHub">
+                <span>GitHub</span>
+            </a>
+            <a href="https://www.facebook.com/dimitris.nakos.357" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook">
+                <span>Facebook</span>
+            </a>
+            <a href="https://www.instagram.com/dimitris_nakos_/#" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
+                <span>Instagram</span>
+            </a>
+            <a href="https://www.twitch.tv/dimitris_nak123" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/3669/3669999.png" alt="Twitch">
+                <span>Twitch</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('mousemove', function(e) {
+            const trail = document.createElement('div');
+            trail.className = 'cursor-trail';
+            trail.style.left = e.pageX + 'px';
+            trail.style.top = e.pageY + 'px';
+            document.body.appendChild(trail);
+
+            setTimeout(() => {
+                trail.style.opacity = '0';
+                setTimeout(() => {
+                    document.body.removeChild(trail);
+                }, 200);
+            }, 100);
+        });
+
+        const links = document.querySelectorAll('.social-icons a');
+        links.forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                const hoverSound = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1UV2NveHt2gIGEeGNaTlhFR0hTVExLRj0wJysjGBMTFRQXGRwhKSwuMzg8Pj87NjArJB4VDgQBAQMFCg8XGyApMDc8QEJCQDw3MCkhGRAJAgEBAgYKDgwxOTs9Pz86NzUxJRkO');
+                hoverSound.volume = 0.2;
+                hoverSound.play();
+            });
+        });
+
+        setInterval(() => {
+            const container = document.querySelector('.container');
+            const colors = ['#ff0099', '#00ff99', '#9900ff', '#ff9900', '#00ffff'];
+            const randomColor1 = colors[Math.floor(Math.random() * colors.length)];
+            const randomColor2 = colors[Math.floor(Math.random() * colors.length)];
+            container.style.setProperty('--border-gradient', `linear-gradient(45deg, ${randomColor1}, ${randomColor2})`);
+        }, 3000);
+    </script>
+</body>
+</html>
